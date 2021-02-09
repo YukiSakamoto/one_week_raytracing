@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdlib.h>
+#include <cmath>
+#include <cstdlib>
 #include <iostream>
 
 class vec3 {
@@ -39,9 +39,8 @@ public:
     }
     inline void make_unit_vector();
 
-private:
     float e[3];
-}
+};
 
 inline std::istream& operator>>(std::istream &is, vec3 &t) {
     is >> t.e[0] >> t.e[1] >> t.e[2];
@@ -78,20 +77,20 @@ inline vec3 operator/(const vec3 &v1, const vec3 &v2) {
 inline vec3 operator*(float t, const vec3 &v) {
     return vec3(t*v.e[0], t*v.e[1] , t*v.e[2]);
 }
-inline vec3 operator/(float t, const vec3 &v) {
-    return vec3(t/v.e[0], t/v.e[1] , t/v.e[2]);
+inline vec3 operator/(const vec3 &v, float t) {
+    return vec3(v.e[0]/t, v.e[1]/t , v.e[2]/t);
 }
 inline vec3 operator*(const vec3 &v, float t) {
     return vec3(t*v.e[0], t*v.e[1] , t*v.e[2]);
 }
-inline vec3 dot(const vec3 &v1, const vec3 &v2) {
+inline float dot(const vec3 &v1, const vec3 &v2) {
     return v1.e[0]*v2.e[0] + v1.e[1]*v2.e[1] + v1.e[2]*v2.e[2];
 }
 inline vec3 cross(const vec3 &v1, const vec3 &v2) {
     return vec3(
             (v1.e[1]*v2.e[2] - v1.e[1]*v2.e[1]),
             (-(v1.e[0]*v2.e[2] - v1.e[2]*v2.e[0])),
-            (v1.e[0]*v2.e[1] - v1.e[1]*v2.e[0]),
+            (v1.e[0]*v2.e[1] - v1.e[1]*v2.e[0])
             );
 }
 
